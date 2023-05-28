@@ -5,10 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.gerpax.heroesavanzado.R
 import com.gerpax.heroesavanzado.databinding.FragmentHeroDetailBinding
+import com.gerpax.heroesavanzado.ui.models.Hero
+import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -16,8 +20,6 @@ class HeroDetailFragment : Fragment() {
 
     private var _binding: FragmentHeroDetailBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     private  val args: HeroDetailFragmentArgs by navArgs()
@@ -35,9 +37,10 @@ class HeroDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.HeroName.text = args.superheroId
+        val photo = args.superheroId
+        Picasso.get().load(photo).into(binding.imageView)
 
-        binding.HeroName.setOnClickListener {
+        binding.imageView.setOnClickListener {
             findNavController().navigate(R.id.detail_Fragment_to_location_fragment)
         }
     }

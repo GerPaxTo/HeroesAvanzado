@@ -9,8 +9,6 @@ import com.gerpax.heroesavanzado.data.local.model.LocalHero
 
 @Dao
 interface SuperheroDAO {
-
-    
     @Query("SELECT * FROM superheros")
     suspend fun getAll(): List<LocalHero>
 

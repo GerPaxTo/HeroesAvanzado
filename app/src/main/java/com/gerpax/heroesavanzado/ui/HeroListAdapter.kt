@@ -36,7 +36,7 @@ class HeroeListaAdapter(private val onClick: (String) -> (Unit)) :
 
         init {
             itemView.setOnClickListener {
-                onClick(superhero.id)
+                onClick(superhero.photo)
             }
         }
 
